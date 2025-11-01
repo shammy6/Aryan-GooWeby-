@@ -1,0 +1,285 @@
+:root {
+    --accent: #a259ff;
+}
+
+/* base */
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: #191b1f;
+    color: #e6e6e6;
+}
+
+/* nav hash style */
+.nav-hash {
+    color: #ffffff;
+    position: relative;
+    padding-left: 0.3rem;
+    font-weight: 500;
+    transition: color 0.3s ease, font-size 0.3s ease;
+    font-size: 14px;
+}
+
+.nav-hash::before {
+    content: "#";
+    color: var(--accent);
+    margin-right: 0.35rem;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.nav-hash:hover {
+    color: var(--accent);
+    font-size: 15px;
+}
+
+.nav-hash:hover::before {
+    color: #ffffff;
+}
+
+/* hero image + card */
+.hero-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(2, 6, 10, 0.6);
+}
+
+.hero-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease, filter .4s;
+}
+
+/* desaturate image for moody vibe */
+.desaturate {
+    filter: grayscale(100%) contrast(.95) brightness(.98);
+}
+
+/* hover pop */
+@media (hover:hover) {
+    .hero-wrap:hover .hero-img {
+        transform: scale(1.02);
+        filter: grayscale(80%) contrast(1.02);
+    }
+}
+
+/* open for projects underline grow */
+.open-projects {
+    display: inline-block;
+
+    color: #bdbdbd;
+    position: relative;
+    padding-bottom: 4px;
+    text-decoration: none;
+    transition: color .25s;
+}
+
+.open-projects::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #8e47ff);
+    transition: width .35s cubic-bezier(.2, .9, .27, 1);
+}
+
+.open-projects:hover::after {
+    width: 100%;
+}
+
+.open-projects:focus::after {
+    width: 100%;
+}
+
+/* social-left */
+.social-left {
+    transform: translateY(-50%);
+    left: 24px;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.social-left a {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 6px;
+}
+
+/* project card */
+.project-card,
+.service-card {
+    background: #0f1114;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: transform .28s cubic-bezier(.2, .9, .27, 1), box-shadow .28s;
+}
+
+.project-card:hover,
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgba(2, 6, 10, 0.55);
+}
+
+.project-card h3 {
+    color: #c084fc;
+}
+
+.project-card p {
+    line-height: 1.4;
+}
+
+/* fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.22, 1, .36, 1), transform .9s cubic-bezier(.22, 1, .36, 1);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* small responsive tweaks */
+@media (min-width: 768px) {
+    .max-w-6xl {
+        max-width: 1100px;
+    }
+}
+
+/* mobile menu toggling (JS class) */
+#mobileMenu.hidden {
+    display: none;
+}
+
+/* --- Additional styles from about2.html (inlined consolidated) --- */
+
+/* smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* floating animation for social icons */
+.social-left a {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* alternate fade-in used by about2 (keeps about2 animation class alongside existing .fade-in.visible) */
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease-out;
+}
+
+/* Hover glow for cards & boxes */
+.glow-hover:hover {
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.4);
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+}
+
+/* Tilt effect on image */
+.tilt:hover {
+    transform: rotateY(8deg) rotateX(4deg);
+    transition: transform 0.5s ease;
+}
+
+/* Header blur effect (reinforces existing header styles) */
+header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(21, 22, 23, 0.7);
+}
+
+/* --- WhatsApp floating button styles (from about2.html) --- */
+
+@keyframes floaty {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Tooltip styling */
+.whatsapp-tooltip {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: #25D366;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip arrow */
+.whatsapp-tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 16px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #25D366 transparent transparent transparent;
+}
+
+/* Show tooltip on hover */
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating button style */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    padding: 16px;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: floaty 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
